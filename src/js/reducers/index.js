@@ -1,10 +1,12 @@
-const initialState = {};
+import { combineReducers } from 'redux';
+import { cards, cardsHasErrored, cardsIsLoading } from './cards';
+import { columns, columnsHasErrored, columnsIsLoading } from './columns';
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
-
-export default rootReducer;
+export default combineReducers({
+  cards,
+  cardsHasErrored,
+  cardsIsLoading,
+  columns,
+  columnsHasErrored,
+  columnsIsLoading
+});
