@@ -1,3 +1,3 @@
 export default {
-  backendURL: process.env.BACKEND_URL
-}
+  backendURL: process.env.BACKEND_URL,
+};

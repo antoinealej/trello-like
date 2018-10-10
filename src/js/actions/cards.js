@@ -1,22 +1,22 @@
 import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS } from '../constants/action-types';
-import { getCardsData } from "../services/backend";
+import { getCardsData } from '../services/backend';
 
 export function cardsHasErrored(bool) {
   return {
     type: CARDS_HAS_ERRORED,
-    hasErrored: bool
+    hasErrored: bool,
   };
 }
 export function cardsIsLoading(bool) {
   return {
     type: CARDS_IS_LOADING,
-    isLoading: bool
+    isLoading: bool,
   };
 }
 export function cardsFetchDataSuccess(cards) {
   return {
     type: CARDS_FETCH_DATA_SUCCESS,
-    cards
+    cards,
   };
 }
 

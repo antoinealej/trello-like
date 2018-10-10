@@ -1,1 +1,1 @@
-import index from "./js/index";
+import './js/index';

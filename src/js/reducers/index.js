@@ -8,5 +8,5 @@ export default combineReducers({
   cardsIsLoading,
   columns,
   columnsHasErrored,
-  columnsIsLoading
+  columnsIsLoading,
 });
