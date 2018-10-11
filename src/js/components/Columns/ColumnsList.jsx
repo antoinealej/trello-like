@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { columnsFetchData } from '../actions/columns';
-import { cardsFetchData } from '../actions/cards';
+import { columnsFetchData } from '../../actions/columns';
+import { cardsFetchData } from '../../actions/cards';
 import Column from './Column';
 import './columnslist.css';
 

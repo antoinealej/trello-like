@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addCard } from '../actions/cards';
-import ButtonSuccess from './Common/ButtonSuccess';
-import ButtonCancel from './Common/ButtonCancel';
+import { addCard } from '../../actions/cards';
+import ButtonSuccess from '../Common/ButtonSuccess';
+import ButtonCancel from '../Common/ButtonCancel';
 import './cardform.css';
 
 const mapDispatchToProps = dispatch => ({

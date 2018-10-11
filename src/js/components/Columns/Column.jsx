@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
-import CardForm from './CardForm';
+import Card from '../Cards/Card';
+import CardForm from '../Cards/CardForm';
 import './column.css';
 
 export default class Column extends PureComponent {

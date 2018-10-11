@@ -1,5 +1,5 @@
 import React from 'react';
-import ColumnsList from './ColumnsList';
+import ColumnsList from './Columns/ColumnsList';
 
 export const App = () => (
   <div>
