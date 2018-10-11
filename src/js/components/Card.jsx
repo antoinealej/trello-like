@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { updateCard } from '../actions/cards';
+import { updateCard, deleteCard } from '../actions/cards';
 import './card.css';
 
 const mapDispatchToProps = dispatch => ({
   editCard: card => dispatch(updateCard(card)),
+  removeCard: card => dispatch(deleteCard(card)),
 });
 
 class Card extends PureComponent {
@@ -17,6 +18,7 @@ class Card extends PureComponent {
       description: props.description || '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(event) {
@@ -26,17 +28,26 @@ class Card extends PureComponent {
     editCard({ id, title, description });
   }
 
+  handleDelete() {
+    const { removeCard } = this.props;
+    const { id } = this.state;
+    removeCard({ id });
+  }
+
   render() {
     const { id, title, description } = this.state;
     return (
       <div key={id} className="card">
-        <input
-          type="text"
-          id="title"
-          placeholder="Enter a title."
-          value={title}
-          onChange={this.handleChange}
-        />
+        <div className="card-title-wrapper">
+          <input
+            type="text"
+            id="title"
+            placeholder="Enter a title."
+            value={title}
+            onChange={this.handleChange}
+          />
+          <button type="button" onClick={this.handleDelete}>&#10005;</button>
+        </div>
         <textarea
           className="card-description"
           id="description"
@@ -54,6 +65,7 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   editCard: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {

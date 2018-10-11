@@ -1,5 +1,10 @@
 import {
-  CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE, CARDS_UPDATE,
+  CARDS_HAS_ERRORED,
+  CARDS_IS_LOADING,
+  CARDS_FETCH_DATA_SUCCESS,
+  CARDS_CREATE,
+  CARDS_UPDATE,
+  CARDS_DELETE,
 } from '../constants/action-types';
 
 export function cardsHasErrored(state = false, action) {
@@ -32,6 +37,8 @@ export function cards(state = [], action) {
           ...action.card,
         };
       });
+    case CARDS_DELETE:
+      return state.filter(card => (card.id !== action.card.id));
     default:
       return state;
   }

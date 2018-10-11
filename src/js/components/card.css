@@ -10,15 +10,35 @@
   color: #8E8E8E;
 }
 .card input, .card textarea {
-  width: 100%;
   border: 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   font-size: 14px;
+}
+.card textarea {
   max-width: 100%;
   min-width: 100%;
 }
-.card input:focus, .card textarea:focus {
+.card input:focus, .card textarea:focus, .card-title-wrapper button {
   outline-width: 0;
+}
+
+.card-title-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.card-title-wrapper button {
+  margin-top: -5px;
+  background-color: transparent;
+  border: 0;
+  color: #FFA0A0;
+}
+.card-title-wrapper button:hover {
+  color: #FF4040;
 }
