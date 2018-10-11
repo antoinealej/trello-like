@@ -8,13 +8,18 @@ export default class Column extends PureComponent {
   constructor() {
     super();
     this.state = {
-      displayForm: false
+      displayForm: false,
     };
   }
 
   render() {
-    const { id, title, cards } = this.props;
-    const { displayForm } = this.state || {};
+    const {
+      id,
+      title,
+      cards,
+      cardsCount,
+    } = this.props;
+    const { displayForm } = this.state;
     return (
       <div key={id} className="column">
         <div className="column-title">{title}</div>
@@ -30,16 +35,27 @@ export default class Column extends PureComponent {
             ))
           }
         </div>
-        { !displayForm &&
-          <div
+        { !displayForm
+          && (
+          <button
+            type="button"
             className="column-add-card"
-            onClick={() => this.setState({ displayForm: true })}>
+            onClick={() => this.setState({ displayForm: true })}
+            onKeyPress={() => this.setState({ displayForm: true })}
+          >
             + Add another card
-          </div>
+          </button>
+          )
         }
         {
-          displayForm &&
-          <CardForm columnId={id} id={this.props.cardsCount + 1} resetForm={() => this.setState({ displayForm: false })} />
+          displayForm
+          && (
+            <CardForm
+              columnId={id}
+              id={cardsCount + 1}
+              resetForm={() => this.setState({ displayForm: false })}
+            />
+          )
         }
       </div>
     );

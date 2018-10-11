@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addCard } from "../actions/cards";
-import { ButtonSuccess, ButtonCancel } from './Common/Buttons';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addCard } from '../actions/cards';
+import ButtonSuccess from './Common/ButtonSuccess';
+import ButtonCancel from './Common/ButtonCancel';
 import './cardform.css';
-import PropTypes from "prop-types";
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addCard: card => dispatch(addCard(card))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  addNewCard: card => dispatch(addCard(card)),
+});
 
 const defaultState = {
-  title: "",
-  description: "",
+  title: '',
+  description: '',
 };
 
 class CardForm extends Component {
@@ -32,14 +31,20 @@ class CardForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { title, description } = this.state;
-    const { columnId, id } = this.props;
-    this.props.addCard({ title, id, description, columnId });
+    const { columnId, id, addNewCard } = this.props;
+    addNewCard({
+      title,
+      id,
+      description,
+      columnId,
+    });
     this.resetForm();
   }
 
   resetForm() {
     this.setState(defaultState);
-    this.props.resetForm();
+    const { resetForm } = this.props;
+    resetForm();
   }
 
   render() {
@@ -63,6 +68,7 @@ class CardForm extends Component {
 
 CardForm.propTypes = {
   resetForm: PropTypes.func.isRequired,
+  addNewCard: PropTypes.func.isRequired,
   columnId: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
 };

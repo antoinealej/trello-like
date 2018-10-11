@@ -9,3 +9,16 @@
 .card-description {
   color: #8E8E8E;
 }
+.card input, .card textarea {
+  width: 100%;
+  border: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  max-width: 100%;
+  min-width: 100%;
+}
+.card input:focus, .card textarea:focus {
+  outline-width: 0;
+}

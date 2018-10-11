@@ -7,7 +7,9 @@
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "lint": "eslint --ext .jsx,.js src/",
-    "test": "mocha --require ignore-styles --require babel-core/register 'src/**/*.spec.{js,jsx}'"
+    "lint:fix": "eslint --ext .jsx,.js src/ --fix",
+    "test": "mocha --require ignore-styles --require babel-core/register 'src/**/*.spec.{js,jsx}'",
+    "pre-commit": "npm-run-all --parallel lint test"
   },
   "repository": {
     "type": "git",
@@ -41,6 +43,8 @@
     "ignore-styles": "^5.0.1",
     "mini-css-extract-plugin": "^0.4.4",
     "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.3",
+    "pre-commit": "^1.2.2",
     "save": "^2.3.2",
     "sinon": "^6.3.5",
     "uuid": "^3.3.2",
@@ -56,5 +60,6 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
-  }
+  },
+  "pre-commit": "pre-commit"
 }

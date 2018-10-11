@@ -1,4 +1,6 @@
-import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE } from '../constants/action-types';
+import {
+  CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE, CARDS_UPDATE,
+} from '../constants/action-types';
 import { getCardsData } from '../services/backend';
 
 export function cardsHasErrored(bool) {
@@ -34,8 +36,17 @@ export function cardsFetchData() {
 }
 
 export function addCard(card) {
+  // Call to the backend to add the card
   return {
     type: CARDS_CREATE,
+    card,
+  };
+}
+
+export function updateCard(card) {
+  // Call to the backend to update the card
+  return {
+    type: CARDS_UPDATE,
     card,
   };
 }

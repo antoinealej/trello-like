@@ -1,4 +1,6 @@
-import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE } from '../constants/action-types';
+import {
+  CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE, CARDS_UPDATE,
+} from '../constants/action-types';
 
 export function cardsHasErrored(state = false, action) {
   switch (action.type) {
@@ -22,6 +24,14 @@ export function cards(state = [], action) {
       return action.cards;
     case CARDS_CREATE:
       return [...state, action.card];
+    case CARDS_UPDATE:
+      return state.map((card) => {
+        if (card.id !== action.card.id) return card;
+        return {
+          ...card,
+          ...action.card,
+        };
+      });
     default:
       return state;
   }

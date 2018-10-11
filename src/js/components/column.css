@@ -11,9 +11,15 @@
   font-weight: 900;
 }
 .column-add-card {
+  border: 0;
+  background-color: transparent;
   color: #8E8E8E;
   cursor: pointer;
 }
 .column-add-card:hover {
   color: #5E5E5E;
+}
+
+.column-add-card:focus {
+  outline-width: 0;
 }
