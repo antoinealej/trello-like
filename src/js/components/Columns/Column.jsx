@@ -1,28 +1,49 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Card from '../Cards/Card';
 import CardForm from '../Cards/CardForm';
+import { updateColumn } from '../../actions/columns';
 import './column.css';
 
-export default class Column extends PureComponent {
-  constructor() {
-    super();
+const mapDispatchToProps = dispatch => ({
+  editColumn: column => dispatch(updateColumn(column)),
+});
+
+class Column extends PureComponent {
+  constructor(props) {
+    super(props);
     this.state = {
+      title: props.title,
       displayForm: false,
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
+    const { id, title } = this.state;
+    const { editColumn } = this.props;
+    editColumn({ id, title });
   }
 
   render() {
     const {
       id,
-      title,
       cards,
       cardsCount,
     } = this.props;
+    const { title } = this.state;
     const { displayForm } = this.state;
     return (
       <div key={id} className="column">
-        <div className="column-title">{title}</div>
+        <input
+          type="text"
+          id="title"
+          placeholder="Enter a title."
+          value={title}
+          onChange={this.handleChange}
+        />
         <div className="column-cards">
           {
             cards.map(card => (
@@ -67,4 +88,7 @@ Column.propTypes = {
   cardsCount: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  editColumn: PropTypes.func.isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(Column);

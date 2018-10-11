@@ -25,3 +25,17 @@
 .column-add-card:focus {
   outline-width: 0;
 }
+
+.column > input {
+  border: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  background-color: transparent;
+  font-weight: 900;
+}
+.column > input:focus {
+  outline-width: 0;
+}

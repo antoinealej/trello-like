@@ -3,6 +3,7 @@ import {
   COLUMNS_IS_LOADING,
   COLUMNS_FETCH_DATA_SUCCESS,
   COLUMN_CREATE,
+  COLUMN_UPDATE,
 } from '../constants/action-types';
 
 export function columnsHasErrored(state = false, action) {
@@ -27,6 +28,14 @@ export function columns(state = [], action) {
       return action.columns;
     case COLUMN_CREATE:
       return [...state, action.column];
+    case COLUMN_UPDATE:
+      return state.map((column) => {
+        if (column.id !== action.column.id) return column;
+        return {
+          ...column,
+          ...action.column,
+        };
+      });
     default:
       return state;
   }

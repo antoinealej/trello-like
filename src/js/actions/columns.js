@@ -3,6 +3,7 @@ import {
   COLUMNS_IS_LOADING,
   COLUMNS_FETCH_DATA_SUCCESS,
   COLUMN_CREATE,
+  COLUMN_UPDATE,
 } from '../constants/action-types';
 import { getColumnsData } from '../services/backend';
 
@@ -43,6 +44,14 @@ export function addColumn(column) {
   // Call to the backend to add the column
   return {
     type: COLUMN_CREATE,
+    column,
+  };
+}
+
+export function updateColumn(column) {
+  // Call to the backend to update the column
+  return {
+    type: COLUMN_UPDATE,
     column,
   };
 }
