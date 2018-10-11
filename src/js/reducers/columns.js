@@ -1,4 +1,9 @@
-import { COLUMNS_HAS_ERRORED, COLUMNS_IS_LOADING, COLUMNS_FETCH_DATA_SUCCESS } from '../constants/action-types';
+import {
+  COLUMNS_HAS_ERRORED,
+  COLUMNS_IS_LOADING,
+  COLUMNS_FETCH_DATA_SUCCESS,
+  COLUMN_CREATE,
+} from '../constants/action-types';
 
 export function columnsHasErrored(state = false, action) {
   switch (action.type) {
@@ -20,6 +25,8 @@ export function columns(state = [], action) {
   switch (action.type) {
     case COLUMNS_FETCH_DATA_SUCCESS:
       return action.columns;
+    case COLUMN_CREATE:
+      return [...state, action.column];
     default:
       return state;
   }

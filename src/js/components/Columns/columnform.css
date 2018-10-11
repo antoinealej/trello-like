@@ -1,0 +1,26 @@
+.column-form {
+  background-color: #004A87;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+}
+
+.column-form input {
+  width: 100%;
+  border: 1px dashed #FFFFFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 4%;
+  max-width: 92%;
+  font-size: 14px;
+  background-color: transparent;
+  color: #FFFFFF;
+}
+.column-form input:focus {
+  outline-width: 0;
+}

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { columnsFetchData } from '../../actions/columns';
 import { cardsFetchData } from '../../actions/cards';
 import Column from './Column';
+import ColumnForm from './ColumnForm';
 import './columnslist.css';
 
 class ColumnsList extends Component {
@@ -43,6 +44,9 @@ class ColumnsList extends Component {
               cardsCount={cards.length}
             />
           ))}
+          <ColumnForm
+            id={columns.length + 1}
+          />
         </div>
       </div>
     );

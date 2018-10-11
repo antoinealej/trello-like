@@ -1,4 +1,9 @@
-import { COLUMNS_HAS_ERRORED, COLUMNS_IS_LOADING, COLUMNS_FETCH_DATA_SUCCESS } from '../constants/action-types';
+import {
+  COLUMNS_HAS_ERRORED,
+  COLUMNS_IS_LOADING,
+  COLUMNS_FETCH_DATA_SUCCESS,
+  COLUMN_CREATE,
+} from '../constants/action-types';
 import { getColumnsData } from '../services/backend';
 
 export function columnsHasErrored(bool) {
@@ -31,5 +36,13 @@ export function columnsFetchData() {
         return res.data;
       })
       .catch(() => dispatch(columnsHasErrored(true)));
+  };
+}
+
+export function addColumn(column) {
+  // Call to the backend to add the column
+  return {
+    type: COLUMN_CREATE,
+    column,
   };
 }
