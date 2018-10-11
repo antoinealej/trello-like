@@ -1,4 +1,4 @@
-import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS } from '../constants/action-types';
+import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE } from '../constants/action-types';
 import { getCardsData } from '../services/backend';
 
 export function cardsHasErrored(bool) {
@@ -20,7 +20,6 @@ export function cardsFetchDataSuccess(cards) {
   };
 }
 
-
 export function cardsFetchData() {
   return (dispatch) => {
     dispatch(cardsIsLoading(true));
@@ -31,5 +30,12 @@ export function cardsFetchData() {
         return res.data;
       })
       .catch(() => dispatch(cardsHasErrored(true)));
+  };
+}
+
+export function addCard(card) {
+  return {
+    type: CARDS_CREATE,
+    card,
   };
 }

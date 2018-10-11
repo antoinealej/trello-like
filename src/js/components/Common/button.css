@@ -1,0 +1,23 @@
+button {
+  font-size: 15px;
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  margin: 10px 5px 0 5px;
+}
+.button-success {
+  border: 1px solid #327819;
+  background-color: #529839;
+  color: #FFFFFF;
+}
+.button-success:hover {
+  background-color: #327819;
+}
+
+.button-cancel {
+  border: 1px solid #A5A5A5;
+  background-color: #C5C5C5;
+  color: #000000;
+}
+.button-cancel:hover {
+  background-color: #A5A5A5;
+}

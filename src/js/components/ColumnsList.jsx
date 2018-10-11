@@ -40,6 +40,7 @@ class ColumnsList extends Component {
               id={column.id}
               title={column.title}
               cards={cards.filter(card => card.columnId === column.id)}
+              cardsCount={cards.length}
             />
           ))}
         </div>

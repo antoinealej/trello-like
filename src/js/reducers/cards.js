@@ -1,4 +1,4 @@
-import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS } from '../constants/action-types';
+import { CARDS_HAS_ERRORED, CARDS_IS_LOADING, CARDS_FETCH_DATA_SUCCESS, CARDS_CREATE } from '../constants/action-types';
 
 export function cardsHasErrored(state = false, action) {
   switch (action.type) {
@@ -20,6 +20,8 @@ export function cards(state = [], action) {
   switch (action.type) {
     case CARDS_FETCH_DATA_SUCCESS:
       return action.cards;
+    case CARDS_CREATE:
+      return [...state, action.card];
     default:
       return state;
   }

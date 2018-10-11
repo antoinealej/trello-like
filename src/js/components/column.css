@@ -10,3 +10,10 @@
 .column-title {
   font-weight: 900;
 }
+.column-add-card {
+  color: #8E8E8E;
+  cursor: pointer;
+}
+.column-add-card:hover {
+  color: #5E5E5E;
+}
