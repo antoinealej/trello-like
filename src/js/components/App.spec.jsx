@@ -4,13 +4,13 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import Adapter from 'enzyme-adapter-react-16';
 import AppComp from './App';
+import ColumnsList from './ColumnsList';
 
 configure({ adapter: new Adapter() });
 
 describe('App', () => {
-  it('renders welcome message', () => {
+  it('renders the component with ColumnsList', () => {
     const wrapper = shallow(<AppComp />);
-    const welcome = <div>Hello World!</div>;
-    expect(wrapper.contains(welcome)).to.equal(true);
+    expect(wrapper.contains(<ColumnsList />)).to.equal(true);
   });
 });

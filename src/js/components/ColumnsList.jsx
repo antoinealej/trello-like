@@ -2,53 +2,75 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { columnsFetchData } from '../actions/columns';
+import { cardsFetchData } from '../actions/cards';
+import Column from './Column';
+import './columnslist.css';
 
 class ColumnsList extends Component {
   componentDidMount() {
-    const { fetchData } = this.props;
-    fetchData();
+    const { fetchColumns, fetchCards } = this.props;
+    fetchColumns();
+    fetchCards();
   }
 
   render() {
-    const { hasErrored, isLoading, columns } = this.props;
-    if (hasErrored) {
-      return <p>Sorry! There was an error loading the columns</p>;
+    const {
+      columns,
+      columnsHasErrored,
+      columnsIsLoading,
+      cards,
+      cardsHasErrored,
+      cardsIsLoading,
+    } = this.props;
+
+    if (columnsHasErrored || cardsHasErrored) {
+      return <p>Sorry! There was an error loading the data</p>;
     }
 
-    if (isLoading) {
-      return <p>Loading columns...</p>;
+    if (columnsIsLoading || cardsIsLoading) {
+      return <p>Loading...</p>;
     }
 
     return (
       <div>
-        <div>Columns List</div>
-        <ul>
+        <div className="columns-wrapper">
           {columns.map(column => (
-            <li key={column.id}>
-              {column.title}
-            </li>
+            <Column
+              key={column.id}
+              id={column.id}
+              title={column.title}
+              cards={cards.filter(card => card.columnId === column.id)}
+            />
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
 }
 
 ColumnsList.propTypes = {
-  fetchData: PropTypes.func.isRequired,
+  fetchColumns: PropTypes.func.isRequired,
+  fetchCards: PropTypes.func.isRequired,
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
-  hasErrored: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  columnsHasErrored: PropTypes.bool.isRequired,
+  columnsIsLoading: PropTypes.bool.isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cardsHasErrored: PropTypes.bool.isRequired,
+  cardsIsLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   columns: state.columns,
-  hasErrored: state.columnsHasErrored,
-  isLoading: state.columnsIsLoading,
+  columnsHasErrored: state.columnsHasErrored,
+  columnsIsLoading: state.columnsIsLoading,
+  cards: state.cards,
+  cardsHasErrored: state.cardsHasErrored,
+  cardsIsLoading: state.cardsIsLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchData: () => dispatch(columnsFetchData()),
+  fetchColumns: () => dispatch(columnsFetchData()),
+  fetchCards: () => dispatch(cardsFetchData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnsList);
