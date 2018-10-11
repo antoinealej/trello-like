@@ -4,6 +4,7 @@ import {
   COLUMNS_FETCH_DATA_SUCCESS,
   COLUMN_CREATE,
   COLUMN_UPDATE,
+  COLUMN_DELETE,
 } from '../constants/action-types';
 import { getColumnsData } from '../services/backend';
 
@@ -25,7 +26,6 @@ export function columnsFetchDataSuccess(columns) {
     columns,
   };
 }
-
 
 export function columnsFetchData() {
   return (dispatch) => {
@@ -52,6 +52,14 @@ export function updateColumn(column) {
   // Call to the backend to update the column
   return {
     type: COLUMN_UPDATE,
+    column,
+  };
+}
+
+export function deleteColumn(column) {
+  // Call to the backend to delete the column
+  return {
+    type: COLUMN_DELETE,
     column,
   };
 }

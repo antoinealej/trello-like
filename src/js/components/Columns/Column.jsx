@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Card from '../Cards/Card';
 import CardForm from '../Cards/CardForm';
-import { updateColumn } from '../../actions/columns';
+import { updateColumn, deleteColumn } from '../../actions/columns';
 import './column.css';
 
 const mapDispatchToProps = dispatch => ({
   editColumn: column => dispatch(updateColumn(column)),
+  removeColumn: column => dispatch(deleteColumn(column)),
 });
 
 class Column extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.id,
       title: props.title,
       displayForm: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(event) {
@@ -25,6 +28,12 @@ class Column extends PureComponent {
     const { id, title } = this.state;
     const { editColumn } = this.props;
     editColumn({ id, title });
+  }
+
+  handleDelete() {
+    const { removeColumn } = this.props;
+    const { id } = this.state;
+    removeColumn({ id });
   }
 
   render() {
@@ -37,13 +46,16 @@ class Column extends PureComponent {
     const { displayForm } = this.state;
     return (
       <div key={id} className="column">
-        <input
-          type="text"
-          id="title"
-          placeholder="Enter a title."
-          value={title}
-          onChange={this.handleChange}
-        />
+        <div className="column-title-wrapper">
+          <input
+            type="text"
+            id="title"
+            placeholder="Enter a title."
+            value={title}
+            onChange={this.handleChange}
+          />
+          <button type="button" onClick={this.handleDelete}>&#10005;</button>
+        </div>
         <div className="column-cards">
           {
             cards.map(card => (
@@ -89,6 +101,7 @@ Column.propTypes = {
   title: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   editColumn: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Column);

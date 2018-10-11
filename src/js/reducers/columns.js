@@ -4,6 +4,7 @@ import {
   COLUMNS_FETCH_DATA_SUCCESS,
   COLUMN_CREATE,
   COLUMN_UPDATE,
+  COLUMN_DELETE,
 } from '../constants/action-types';
 
 export function columnsHasErrored(state = false, action) {
@@ -36,6 +37,8 @@ export function columns(state = [], action) {
           ...action.column,
         };
       });
+    case COLUMN_DELETE:
+      return state.filter(column => (column.id !== action.column.id));
     default:
       return state;
   }
