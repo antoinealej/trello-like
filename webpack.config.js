@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 
 const env = dotenv.config().parsed;
 
-const envKeys = Object.keys(env).reduce((prev, next) => {
+const envKeys = Object.keys(env || {}).reduce((prev, next) => {
   const arr = Object.assign(prev);
   arr[`process.env.${next}`] = JSON.stringify(env[next]);
   return arr;
